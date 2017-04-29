@@ -74,7 +74,6 @@ class RegisterForm(forms.SelfHandlingForm):
             self.fields['ipmihost'].initial = bmc['IP Address']
             if bmcuser.get('2'):
                 self.fields['ipmiuser'].initial = bmcuser['2']['']
-            
             # Host network initials
             host = shovel.get_catalog_data_by_source(self._node['id'], 'ohai')
             self.fields['sshuser'].initial = host['current_user']

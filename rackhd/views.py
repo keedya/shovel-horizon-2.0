@@ -61,10 +61,10 @@ class IndexView(tables.DataTableView):
                 name = dmi['System Information']['Product Name']
                 hwaddr = n['name'] 
                 id = n['id']
-                events = '0'
+                events = 'SEL'
                 n = self._find_ironic_node(id)
                 if n is not None:
-                    events = n['extra'].get('eventcnt','0')
+                    events = n['extra'].get('eventcnt','SEL')
                     state = 'Registered'
                 else:
                     state = 'Unregistered'
@@ -226,7 +226,7 @@ class BareMetalEventView(tables.MultiTableView):
     
     def _find_ironic_node(self, id):
         nodes = shovel.get_ironic_nodes()
-        for n in nodes['nodes']:
+        for n in nodes:
             if n['extra'].get('nodeid', None) == id:
                 return n
 
